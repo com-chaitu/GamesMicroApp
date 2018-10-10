@@ -1,4 +1,4 @@
-package com.chaitu.games;
+package com.chaitu.games.dao;
 
 import java.sql.Date;
 
@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 @Entity(name="games_customer")
-public class Customer {
+public class CustomerDao {
 	
 	@Id
 	@NotBlank

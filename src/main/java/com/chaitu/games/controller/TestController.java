@@ -1,4 +1,4 @@
-package com.chaitu.games;
+package com.chaitu.games.controller;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.chaitu.games.*;
+import com.chaitu.games.dao.CustomerDao;
 
 @RestController
 public class TestController {
@@ -21,7 +22,7 @@ public class TestController {
 	
 	@PostMapping("/testc")
 	public String testPostMethod(){
-		List<Customer> list = custRepo.findAll();
+		List<CustomerDao> list = custRepo.findAll();
 		
 		return "This is chaitu's microservice";
 		
