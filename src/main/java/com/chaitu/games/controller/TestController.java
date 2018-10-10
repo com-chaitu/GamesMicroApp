@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.chaitu.games.*;
+
 import com.chaitu.games.dao.CustomerDao;
+import com.chaitu.games.repository.CustomerRepository;
 
 @RestController
 public class TestController {
