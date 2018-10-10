@@ -1,4 +1,4 @@
-package com.chaitu.games;
+package com.chaitu.games.config;
 
 import java.util.Arrays;
 
