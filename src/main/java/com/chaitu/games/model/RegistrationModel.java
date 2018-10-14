@@ -12,6 +12,8 @@ public class RegistrationModel {
 	private String landmark;
 	private String city;
 	private String pincode;
+	private String password;
+	
 	
 	public String getEmailId() {
 		return emailId;
@@ -72,5 +74,11 @@ public class RegistrationModel {
 	}
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }
