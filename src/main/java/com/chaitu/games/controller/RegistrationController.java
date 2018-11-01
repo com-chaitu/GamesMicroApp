@@ -1,6 +1,7 @@
 package com.chaitu.games.controller;
 
 import java.text.ParseException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,20 +24,30 @@ public class RegistrationController {
 	public ResponseEntity<?> registerUser(@RequestBody RegistrationModel regInputData) {
 		try {
 			CustomerDao savedCustDao = regAggregator.registerUser(regInputData);
-			return new ResponseEntity<Object>(savedCustDao, HttpStatus.OK);
+			if (savedCustDao != null) {
+				return new ResponseEntity<Object>(savedCustDao, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<Object>(savedCustDao, HttpStatus.CONFLICT);
+			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return new ResponseEntity<Object>(HttpStatus.CONFLICT);
 		}
 	}
-	
-	@PostMapping(value = "/setupPwd")
-	public ResponseEntity<?> setupPwd(@RequestBody RegistrationModel regInputData) {
-		if (regAggregator.savePassword(regInputData)) {
-			return new ResponseEntity<>(HttpStatus.OK);
-		} else {
+
+	@PostMapping(value = "/isUserEnrolled")
+	public ResponseEntity<?> isUserEnrolled(@RequestBody RegistrationModel regInputData) {
+		try {
+			Optional<CustomerDao> isUserEnrolled = regAggregator.isUserEnrolled(regInputData);
+			if (!isUserEnrolled.isPresent()) {
+				return new ResponseEntity<>(HttpStatus.OK);
+			}
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		} catch (Exception exception) {
+			exception.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
+
 	}
 
 }

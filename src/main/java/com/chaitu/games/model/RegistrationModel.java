@@ -6,14 +6,13 @@ public class RegistrationModel {
 	private String firstName;
 	private String lastName;
 	private String dob;
-	private String mobieNumber;
+	private String mobile;
 	private String addressLine1;
 	private String addressLine2;
 	private String landmark;
 	private String city;
 	private String pincode;
 	private String password;
-	
 	
 	public String getEmailId() {
 		return emailId;
@@ -39,11 +38,11 @@ public class RegistrationModel {
 	public void setDob(String dob) {
 		this.dob = dob;
 	}
-	public String getMobieNumber() {
-		return mobieNumber;
+	public String getMobile() {
+		return mobile;
 	}
-	public void setMobieNumber(String mobieNumber) {
-		this.mobieNumber = mobieNumber;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 	public String getAddressLine1() {
 		return addressLine1;
@@ -81,4 +80,5 @@ public class RegistrationModel {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 }
