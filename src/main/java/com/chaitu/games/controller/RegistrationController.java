@@ -46,7 +46,7 @@ public class RegistrationController {
 			} else {
 				json.put("userRegistered", true);
 			}
-			return new ResponseEntity<JSONObject>(json, HttpStatus.OK);
+			return new ResponseEntity<>(json.toString(), HttpStatus.OK);
 		} catch (Exception exception) {
 			exception.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
