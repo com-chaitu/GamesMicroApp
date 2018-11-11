@@ -3,6 +3,7 @@ package com.chaitu.games.controller;
 import java.text.ParseException;
 import java.util.Optional;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,11 +28,11 @@ public class RegistrationController {
 			if (savedCustDao != null) {
 				return new ResponseEntity<Object>(savedCustDao, HttpStatus.OK);
 			} else {
-				return new ResponseEntity<Object>(savedCustDao, HttpStatus.CONFLICT);
+				return new ResponseEntity<Object>(savedCustDao, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
-			return new ResponseEntity<Object>(HttpStatus.CONFLICT);
+			return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -39,13 +40,16 @@ public class RegistrationController {
 	public ResponseEntity<?> isUserEnrolled(@RequestBody RegistrationModel regInputData) {
 		try {
 			Optional<CustomerDao> isUserEnrolled = regAggregator.isUserEnrolled(regInputData);
+			JSONObject json = new JSONObject();
 			if (!isUserEnrolled.isPresent()) {
-				return new ResponseEntity<>(HttpStatus.OK);
+				json.put("userRegistered", false);
+			} else {
+				json.put("userRegistered", true);
 			}
-			return new ResponseEntity<>(HttpStatus.CONFLICT);
+			return new ResponseEntity<JSONObject>(json, HttpStatus.OK);
 		} catch (Exception exception) {
 			exception.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.CONFLICT);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 	}
